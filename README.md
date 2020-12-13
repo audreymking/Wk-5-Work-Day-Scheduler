@@ -11,7 +11,7 @@ The goal of this project is to create a reusable calendar application for employ
 
 * The hours are color coded. Gray blocks represent the past, the red block represents the present, and green blocks represent the future.
 
-* Hit the clear button on the bottom to clear the text and refresh the page.
+* Hit the clear button on the top to clear the text and refresh the page.
 
 ## Mock-Up and Link to Page:
 
