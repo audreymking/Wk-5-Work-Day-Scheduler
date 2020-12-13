@@ -3,16 +3,11 @@ $(document).ready(function() {
     //shows the date-- attached to currentDay ID
     var currentDate = moment().format("dddd, MMMM Do");
     $("#currentDay").text(currentDate);
-
-    
-    // WHEN I scroll down
-    // THEN I am presented with time blocks for standard business hours
-    //8 blocks of time
     
     //variable that takes the current time from moment
     var currentTime = 11
 
-    //variable that is attached to workTime ID
+    //variable that is attached to workTime ID-- used for loop, which goes through all of the id's containing workTime
     var textBoxes = $(".workTime");
 
     //loop to go through all text boxes- to color the textboxes according to time
@@ -20,17 +15,14 @@ $(document).ready(function() {
         //variable to add workID to each textBoxes in the loop
         var workHour = $(textBoxes[i]).attr('workID');
         if (currentTime > workHour) {
-            $(textBoxes[i]).addClass("past"); //past- turns textbox gray
+            $(textBoxes[i]).addClass("past"); //past- turns textbox gray if the time has passed
         } else if (currentTime < workHour) {
-            $(textBoxes[i]).addClass("future"); //future- turns textbox green
+            $(textBoxes[i]).addClass("future"); //future- turns textbox green if the time is in the future
         } else {
-            $(textBoxes[i]).addClass("present"); //present- turns textbox red
+            $(textBoxes[i]).addClass("present"); //present- turns textbox red if the current time is within that hour
         }
     }
-    
-    // WHEN I view the time blocks for that day
-    // THEN each time block is color-coded to indicate whether it is in the past, present, or future
-    
+
     //local storage
     //attaches a click function when save-btn is clicked
     $(".save-btn").on("click", function(event){
@@ -42,12 +34,6 @@ $(document).ready(function() {
         //takes hourInput and textInput and stores it into localStorage
         localStorage.setItem(hourInput, textInput);
     })
-    
-    // WHEN I click into a time block
-    // THEN I can enter an event
-    
-    // WHEN I click the save button for that time block
-    // THEN the text for that event is saved in local storage
 
     //accesses workTime with workID- takes value of localStorage to display even if page has been refreshed
     $(".workTime[workID='9'] textarea").val(localStorage.getItem("9"));
@@ -67,9 +53,11 @@ $(document).ready(function() {
     $(".workTime[workID='16'] textarea").val(localStorage.getItem("16"));
 
     $(".workTime[workID='17'] textarea").val(localStorage.getItem("17"));
-  });    
-  
-    
-    // WHEN I refresh the page
-    // THEN the saved events persist
 
+    //when clicked, the localStorage clears and text boxes are emptied for user to use again
+    $(".clear").click(function() {
+        localStorage.clear();
+        //reloads the page so user sees empty text boxes
+        window.location.reload();
+    });
+  });    
