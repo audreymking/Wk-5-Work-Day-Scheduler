@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    //shows the date-- attached to currentDay ID
+    //variable to show the date- attached to currentDay ID
     var currentDate = moment().format("dddd, MMMM Do");
     $("#currentDay").text(currentDate);
     
@@ -10,7 +10,7 @@ $(document).ready(function() {
     //variable that is attached to workTime ID-- used for loop, which goes through all of the id's containing workTime
     var textBoxes = $(".workTime");
 
-    //loop to go through all text boxes- to color the textboxes according to time
+    //loop to go through all textBoxes- colors the textboxes according to time
     for (var i = 0; i < textBoxes.length; i++) {
         //variable to add workID to each textBoxes in the loop
         var workHour = $(textBoxes[i]).attr('workID');
@@ -24,18 +24,18 @@ $(document).ready(function() {
     }
 
     //local storage
-    //attaches a click function when save-btn is clicked
-    $(".save-btn").on("click", function(event){
-        //variable for when save-btn is clicked- selects one element up and adds to workID-- for localStorage key
+    //attaches a click function when btn is clicked
+    $(".btn").on("click", function(event){
+        //variable for when btn is clicked- selects one element up and adds to workID-- for localStorage key
         var hourInput = $(event.target).parent().attr("workID");
-        //variable for when save-btn is clicked- accesses the textarea box, val returns what user inputed into textbox-- for localStorage value
+        //variable for when btn is clicked- accesses the textarea box, val returns what user inputed into textbox-- for localStorage value
         var textInput = $(event.target).siblings("textarea").val();
         
-        //takes hourInput and textInput and stores it into localStorage
+        //takes hourInput and textInput and stores it into localStorage-- hourInput is key, textInput is value
         localStorage.setItem(hourInput, textInput);
     })
 
-    //accesses workTime with workID- takes value of localStorage to display even if page has been refreshed
+    //accesses workTime with each defined workID- takes value of localStorage to display on application even if page has been refreshed
     $(".workTime[workID='9'] textarea").val(localStorage.getItem("9"));
 
     $(".workTime[workID='10'] textarea").val(localStorage.getItem("10"));
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
     $(".workTime[workID='17'] textarea").val(localStorage.getItem("17"));
 
-    //when clicked, the localStorage clears and text boxes are emptied for user
+    //when clear button is clicked, the localStorage clears and text boxes are emptied for user
     $(".clear").click(function() {
         localStorage.clear();
         //reloads the page so user sees empty text boxes
