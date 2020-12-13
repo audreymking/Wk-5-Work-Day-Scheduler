@@ -5,7 +5,7 @@ $(document).ready(function() {
     $("#currentDay").text(currentDate);
     
     //variable that takes the current time from moment
-    var currentTime = 11
+    var currentTime = moment().hours();
 
     //variable that is attached to workTime ID-- used for loop, which goes through all of the id's containing workTime
     var textBoxes = $(".workTime");
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
     $(".workTime[workID='17'] textarea").val(localStorage.getItem("17"));
 
-    //when clicked, the localStorage clears and text boxes are emptied for user to use again
+    //when clicked, the localStorage clears and text boxes are emptied for user
     $(".clear").click(function() {
         localStorage.clear();
         //reloads the page so user sees empty text boxes
